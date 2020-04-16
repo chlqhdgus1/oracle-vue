@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<table border="1" width="80%" id="tb">
+ 	<tr>
+ 		<td>부서번호</td>
+ 		<td>부서명</td>
+ 		<td>부서위치</td>
+ 	</tr>
+ 	
+ 	<tr v-for="d in list">
+ 		<td>{{d.dno}}</td>
+ 		<td>{{d.dname}}</td>
+ 		<td>{{d.dloc}}</td>
+ 	</tr>
+</table>
+
+<script type="text/javascript">
+	axios.get("/listDept.do").then(function(res){
+		console.log(res.data);
+		
+		var tb = new Vue({
+			el:"#tb",
+			data:{list:res.data}
+		})
+	});
+</script>
+</body>
+</html>
